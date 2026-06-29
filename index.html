@@ -287,6 +287,10 @@
       <div class="chart-wrap" style="flex:1; min-height:0;">
         <canvas id="uDivChart"></canvas>
       </div>
+      <div style="display:flex; gap:20px; padding:8px 4px 0; font-size:12px; font-weight:600; color:#4a5568;">
+        <span><span style="display:inline-block;width:12px;height:12px;background:#38a169;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>Pilot divisions</span>
+        <span><span style="display:inline-block;width:12px;height:12px;background:#ecc94b;border-radius:2px;vertical-align:middle;margin-right:5px;"></span>New divisions onboard</span>
+      </div>
     </div>
     <div class="card" style="grid-column:1/3; grid-row:2; display:flex; flex-direction:column;">
       <h3>Users by Designation</h3>
@@ -633,26 +637,22 @@ new Chart(document.getElementById('uDivChart'), {
   type: 'bar',
   data: {
     labels: ['DTO', 'RDD', 'SNG-GDD', 'DEO', 'DSD', 'CDD-HR', 'ICO', 'ISM', 'SNG-WDD', 'PCD-TD', 'SPD-Finance', 'CDCP', 'REACH', 'GITD', 'MD-MED', 'PCD-CPD', 'GDD', 'LEGAL', 'MD-MAOD', 'PCD-NMO', 'SCD', 'SNG-Products', 'SNG-Smart City'],
-    datasets: [
-      {
-        label: 'Pilot divisions',
-        data: [16, 11, 10, 6, 5, 5, 4, null, 3, 3, 3, null, null, 2, null, 2, null, null, null, null, null, null, null],
-        backgroundColor: GREEN,
-        barThickness: 14
-      },
-      {
-        label: 'New divisions onboard',
-        data: [null, null, null, null, null, null, null, 4, null, null, null, 2, 2, null, 2, null, 1, 1, 1, 1, 1, 1, 1],
-        backgroundColor: YELLOW,
-        barThickness: 14
-      }
-    ]
+    datasets: [{
+      label: 'Active Users',
+      data: [16, 11, 10, 6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
+      backgroundColor: [
+        GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, YELLOW,
+        GREEN, GREEN, GREEN, YELLOW, YELLOW, GREEN, YELLOW, GREEN,
+        YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW
+      ],
+      barThickness: 14
+    }]
   },
   options: {
     indexAxis: 'y',
     plugins: {
-      legend: { display: true, position: 'bottom', labels: { font: { size: 12 }, usePointStyle: true } },
-      datalabels: { anchor: 'end', align: 'right', display: ctx => ctx.dataset.data[ctx.dataIndex] != null, formatter: val => val, color: '#2d3748', font: { size: 11, weight: '700' } }
+      legend: { display: false },
+      datalabels: { anchor: 'end', align: 'right', formatter: val => val, color: '#2d3748', font: { size: 11, weight: '700' } }
     },
     scales: { x: { ticks: { stepSize: 1 }, title: { display: true, text: 'Users' }, grid: { display: false } }, y: { ticks: { autoSkip: false }, grid: { display: false } } },
     layout: { padding: { right: 24 } },
