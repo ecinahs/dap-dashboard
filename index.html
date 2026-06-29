@@ -269,7 +269,7 @@
     </div>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1.6fr; grid-template-rows:auto 1fr; gap:16px; margin-bottom:20px; height:calc(100vh - 350px); min-height:500px;">
+  <div style="display:grid; grid-template-columns:1fr 1fr 1.6fr; grid-template-rows:auto 1fr; gap:16px; margin-bottom:20px; height:calc(100vh - 350px); min-height:500px;">
     <div class="card" style="grid-column:1; grid-row:1;">
       <h3>Role Breakdown</h3>
       <div class="chart-wrap" style="margin:auto; text-align:center;">
@@ -277,24 +277,18 @@
       </div>
     </div>
     <div class="card" style="grid-column:2; grid-row:1;">
-      <h3>User Status</h3>
-      <div class="chart-wrap" style="margin:auto; text-align:center;">
-        <canvas id="uStatusChart" width="200" height="200"></canvas>
-      </div>
-    </div>
-    <div class="card" style="grid-column:3; grid-row:1;">
       <h3>Stage</h3>
       <div class="chart-wrap" style="margin:auto; text-align:center;">
         <canvas id="uStageChart" width="200" height="200"></canvas>
       </div>
     </div>
-    <div class="card" style="grid-column:4; grid-row:1/3; display:flex; flex-direction:column;">
+    <div class="card" style="grid-column:3; grid-row:1/3; display:flex; flex-direction:column;">
       <h3>Users by Division</h3>
       <div class="chart-wrap" style="flex:1; min-height:0;">
         <canvas id="uDivChart"></canvas>
       </div>
     </div>
-    <div class="card" style="grid-column:1/4; grid-row:2; display:flex; flex-direction:column;">
+    <div class="card" style="grid-column:1/3; grid-row:2; display:flex; flex-direction:column;">
       <h3>Users by Designation</h3>
       <div class="chart-wrap" style="flex:1; min-height:0;">
         <canvas id="uDesigChart"></canvas>
@@ -595,28 +589,6 @@ new Chart(document.getElementById('uRoleChart'), {
   data: {
     labels: ['Data Analyst', 'Data Owner', 'GITD Admin'],
     datasets: [{ data: [63, 22, 2], backgroundColor: [BLUE, GREEN, GRAY], borderWidth: 2 }]
-  },
-  options: {
-    plugins: {
-      legend: { position: 'bottom', align: 'start', labels: { font: { size: 11 } } },
-      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} (${ctx.raw}%)` } },
-      datalabels: {
-        anchor: 'center', align: 'center',
-        display: 'auto',
-        formatter: val => val,
-        color: 'white', font: { size: 14, weight: '700' }
-      }
-    },
-    responsive: false, cutout: '50%', layout: { padding: 10 }
-  }
-});
-
-// U2. Status donut
-new Chart(document.getElementById('uStatusChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Active', 'Inactive'],
-    datasets: [{ data: [87, 13], backgroundColor: [GREEN, '#fc8181'], borderWidth: 2 }]
   },
   options: {
     plugins: {
