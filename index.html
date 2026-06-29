@@ -269,35 +269,35 @@
     </div>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1.6fr; grid-template-rows:auto auto; gap:16px; margin-bottom:20px;">
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1.6fr; grid-template-rows:auto 1fr; gap:16px; margin-bottom:20px; height:calc(100vh - 350px); min-height:500px;">
     <div class="card" style="grid-column:1; grid-row:1;">
       <h3>Role Breakdown</h3>
-      <div class="chart-wrap" style="width:260px; height:260px; margin:auto;">
+      <div class="chart-wrap" style="width:200px; height:200px; margin:auto;">
         <canvas id="uRoleChart"></canvas>
       </div>
     </div>
     <div class="card" style="grid-column:2; grid-row:1;">
       <h3>User Status</h3>
-      <div class="chart-wrap" style="width:260px; height:260px; margin:auto;">
+      <div class="chart-wrap" style="width:200px; height:200px; margin:auto;">
         <canvas id="uStatusChart"></canvas>
       </div>
     </div>
     <div class="card" style="grid-column:3; grid-row:1;">
       <h3>Stage</h3>
-      <div class="chart-wrap" style="width:260px; height:260px; margin:auto;">
+      <div class="chart-wrap" style="width:200px; height:200px; margin:auto;">
         <canvas id="uStageChart"></canvas>
       </div>
     </div>
     <div class="card" style="grid-column:4; grid-row:1/3; display:flex; flex-direction:column;">
       <h3>Users by Division</h3>
-      <div class="chart-wrap" style="flex:1; min-height:580px;">
+      <div class="chart-wrap" style="flex:1; min-height:0;">
         <canvas id="uDivChart"></canvas>
       </div>
     </div>
-    <div class="card" style="grid-column:1/4; grid-row:2;">
+    <div class="card" style="grid-column:1/4; grid-row:2; display:flex; flex-direction:column;">
       <h3>Users by Designation</h3>
-      <div class="chart-wrap">
-        <canvas id="uDesigChart" style="min-height:190px;"></canvas>
+      <div class="chart-wrap" style="flex:1; min-height:0;">
+        <canvas id="uDesigChart"></canvas>
       </div>
     </div>
   </div>
