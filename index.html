@@ -581,7 +581,8 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 // === DAP Users Tab Charts ===
-const GRAY = '#718096';
+const GRAY   = '#718096';
+const YELLOW = '#ecc94b';
 
 // U1. Role donut
 new Chart(document.getElementById('uRoleChart'), {
@@ -632,7 +633,32 @@ new Chart(document.getElementById('uDivChart'), {
   type: 'bar',
   data: {
     labels: ['DTO', 'RDD', 'SNG-GDD', 'DEO', 'DSD', 'CDD-HR', 'ICO', 'ISM', 'SNG-WDD', 'PCD-TD', 'SPD-Finance', 'CDCP', 'REACH', 'GITD', 'MD-MED', 'PCD-CPD', 'GDD', 'LEGAL', 'MD-MAOD', 'PCD-NMO', 'SCD', 'SNG-Products', 'SNG-Smart City'],
-    datasets: [{ label: 'Active Users', data: [16, 11, 10, 6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1], backgroundColor: TEAL }]
+    datasets: [{ label: 'Active Users', data: [16, 11, 10, 6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
+      backgroundColor: [
+        TEAL,   // DTO - N
+        TEAL,   // RDD - N
+        TEAL,   // SNG-GDD - N
+        TEAL,   // DEO - N
+        TEAL,   // DSD - N
+        TEAL,   // CDD-HR - N
+        TEAL,   // ICO - N
+        YELLOW, // ISM - Y
+        TEAL,   // SNG-WDD - N
+        TEAL,   // PCD-TD - N
+        TEAL,   // SPD-Finance - N
+        YELLOW, // CDCP - Y
+        YELLOW, // REACH - Y
+        TEAL,   // GITD - N
+        YELLOW, // MD-MED - Y
+        TEAL,   // PCD-CPD - N
+        YELLOW, // GDD - Y
+        YELLOW, // LEGAL - Y
+        YELLOW, // MD-MAOD - Y
+        YELLOW, // PCD-NMO - Y
+        YELLOW, // SCD - Y
+        YELLOW, // SNG-Products - Y
+        YELLOW  // SNG-Smart City - Y
+      ] }]
   },
   options: {
     indexAxis: 'y',
