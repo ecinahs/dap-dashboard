@@ -272,20 +272,20 @@
   <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1.6fr; grid-template-rows:auto 1fr; gap:16px; margin-bottom:20px; height:calc(100vh - 350px); min-height:500px;">
     <div class="card" style="grid-column:1; grid-row:1;">
       <h3>Role Breakdown</h3>
-      <div class="chart-wrap" style="width:200px; height:200px; margin:auto;">
-        <canvas id="uRoleChart"></canvas>
+      <div class="chart-wrap" style="margin:auto; text-align:center;">
+        <canvas id="uRoleChart" width="200" height="200"></canvas>
       </div>
     </div>
     <div class="card" style="grid-column:2; grid-row:1;">
       <h3>User Status</h3>
-      <div class="chart-wrap" style="width:200px; height:200px; margin:auto;">
-        <canvas id="uStatusChart"></canvas>
+      <div class="chart-wrap" style="margin:auto; text-align:center;">
+        <canvas id="uStatusChart" width="200" height="200"></canvas>
       </div>
     </div>
     <div class="card" style="grid-column:3; grid-row:1;">
       <h3>Stage</h3>
-      <div class="chart-wrap" style="width:200px; height:200px; margin:auto;">
-        <canvas id="uStageChart"></canvas>
+      <div class="chart-wrap" style="margin:auto; text-align:center;">
+        <canvas id="uStageChart" width="200" height="200"></canvas>
       </div>
     </div>
     <div class="card" style="grid-column:4; grid-row:1/3; display:flex; flex-direction:column;">
@@ -607,7 +607,7 @@ new Chart(document.getElementById('uRoleChart'), {
         color: 'white', font: { size: 14, weight: '700' }
       }
     },
-    cutout: '50%', layout: { padding: 10 }
+    responsive: false, cutout: '50%', layout: { padding: 10 }
   }
 });
 
@@ -629,7 +629,7 @@ new Chart(document.getElementById('uStatusChart'), {
         color: 'white', font: { size: 14, weight: '700' }
       }
     },
-    cutout: '50%', layout: { padding: 10 }
+    responsive: false, cutout: '50%', layout: { padding: 10 }
   }
 });
 
@@ -651,7 +651,7 @@ new Chart(document.getElementById('uStageChart'), {
         color: 'white', font: { size: 14, weight: '700' }
       }
     },
-    cutout: '50%', layout: { padding: 10 }
+    responsive: false, cutout: '50%', layout: { padding: 10 }
   }
 });
 
