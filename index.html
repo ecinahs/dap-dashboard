@@ -633,38 +633,24 @@ new Chart(document.getElementById('uDivChart'), {
   type: 'bar',
   data: {
     labels: ['DTO', 'RDD', 'SNG-GDD', 'DEO', 'DSD', 'CDD-HR', 'ICO', 'ISM', 'SNG-WDD', 'PCD-TD', 'SPD-Finance', 'CDCP', 'REACH', 'GITD', 'MD-MED', 'PCD-CPD', 'GDD', 'LEGAL', 'MD-MAOD', 'PCD-NMO', 'SCD', 'SNG-Products', 'SNG-Smart City'],
-    datasets: [{ label: 'Active Users', data: [16, 11, 10, 6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1],
-      backgroundColor: [
-        TEAL,   // DTO - N
-        TEAL,   // RDD - N
-        TEAL,   // SNG-GDD - N
-        TEAL,   // DEO - N
-        TEAL,   // DSD - N
-        TEAL,   // CDD-HR - N
-        TEAL,   // ICO - N
-        YELLOW, // ISM - Y
-        TEAL,   // SNG-WDD - N
-        TEAL,   // PCD-TD - N
-        TEAL,   // SPD-Finance - N
-        YELLOW, // CDCP - Y
-        YELLOW, // REACH - Y
-        TEAL,   // GITD - N
-        YELLOW, // MD-MED - Y
-        TEAL,   // PCD-CPD - N
-        YELLOW, // GDD - Y
-        YELLOW, // LEGAL - Y
-        YELLOW, // MD-MAOD - Y
-        YELLOW, // PCD-NMO - Y
-        YELLOW, // SCD - Y
-        YELLOW, // SNG-Products - Y
-        YELLOW  // SNG-Smart City - Y
-      ] }]
+    datasets: [
+      {
+        label: 'Pilot divisions',
+        data: [16, 11, 10, 6, 5, 5, 4, null, 3, 3, 3, null, null, 2, null, 2, null, null, null, null, null, null, null],
+        backgroundColor: GREEN
+      },
+      {
+        label: 'New divisions onboard',
+        data: [null, null, null, null, null, null, null, 4, null, null, null, 2, 2, null, 2, null, 1, 1, 1, 1, 1, 1, 1],
+        backgroundColor: YELLOW
+      }
+    ]
   },
   options: {
     indexAxis: 'y',
     plugins: {
-      legend: { display: false },
-      datalabels: { anchor: 'end', align: 'right', formatter: val => val, color: '#2d3748', font: { size: 11, weight: '700' } }
+      legend: { display: true, position: 'top', labels: { font: { size: 12 }, usePointStyle: true } },
+      datalabels: { anchor: 'end', align: 'right', display: ctx => ctx.dataset.data[ctx.dataIndex] != null, formatter: val => val, color: '#2d3748', font: { size: 11, weight: '700' } }
     },
     scales: { x: { ticks: { stepSize: 1 }, title: { display: true, text: 'Users' } }, y: { ticks: { autoSkip: false } } },
     layout: { padding: { right: 24 } },
