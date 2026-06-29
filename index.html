@@ -96,6 +96,21 @@
     .badge.mod { background: #fffaf0; color: #c05621; }
 
     footer { text-align: center; font-size: 0.75rem; color: #a0aec0; padding: 24px; }
+
+    /* Tab navigation */
+    .tab-nav { display: flex; background: #fff; border-bottom: 2px solid #e2e8f0; padding: 0 32px; }
+    .tab-btn { padding: 14px 24px; border: none; background: none; cursor: pointer; font-size: 0.9rem; font-weight: 600; color: #718096; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.15s; }
+    .tab-btn:hover { color: #2b6cb0; }
+    .tab-btn.active { color: #2b6cb0; border-bottom-color: #2b6cb0; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Extra badge types for user table */
+    .badge.pilot { background: #e9d8fd; color: #553c9a; }
+    .badge.mass  { background: #feebc8; color: #c05621; }
+    .badge.act   { background: #f0fff4; color: #276749; }
+    .badge.ina   { background: #fff5f5; color: #c53030; }
+    .badge.gitd  { background: #e2e8f0; color: #4a5568; }
   </style>
 </head>
 <body>
@@ -108,6 +123,12 @@
   </div>
 </header>
 
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="tab-requests">Access Requests</button>
+  <button class="tab-btn" data-tab="tab-users">DAP Users</button>
+</nav>
+
+<div id="tab-requests" class="tab-content active">
 <div class="container">
 
   <!-- KPI Row -->
@@ -224,6 +245,180 @@
 </div>
 
 <footer>DAP Dashboard &nbsp;|&nbsp; Data as at 26 Jun 2026</footer>
+</div><!-- /tab-requests -->
+
+<div id="tab-users" class="tab-content">
+<div class="container">
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="num">100</div>
+      <div class="label">Total Users</div>
+    </div>
+    <div class="kpi green">
+      <div class="num">87</div>
+      <div class="label">Active Users</div>
+    </div>
+    <div class="kpi orange">
+      <div class="num">72</div>
+      <div class="label">Data Analysts</div>
+    </div>
+    <div class="kpi purple">
+      <div class="num">80</div>
+      <div class="label">Pilot Stage</div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Role Breakdown</h3>
+      <div class="chart-wrap" style="max-width:280px; margin:auto;">
+        <canvas id="uRoleChart"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <h3>User Status</h3>
+      <div class="chart-wrap" style="max-width:280px; margin:auto;">
+        <canvas id="uStatusChart"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Stage</h3>
+      <div class="chart-wrap" style="max-width:280px; margin:auto;">
+        <canvas id="uStageChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Users by Division</h3>
+      <div class="chart-wrap">
+        <canvas id="uDivChart" style="min-height:460px;"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Users by Designation</h3>
+      <div class="chart-wrap">
+        <canvas id="uDesigChart" style="min-height:460px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <h3>All DAP Users</h3>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Email</th><th>Role</th><th>Division</th><th>Designation</th><th>Stage</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>yew_jun_kee@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>2</td><td>jay_koh@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>PCD-NMO</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>3</td><td>serene_law@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>DEO</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>4</td><td>tng_seok_hieng@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-WDD</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>5</td><td>leong_zhao_sen@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>ISM</td><td>Data Engineer</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>6</td><td>daphne_ong@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>ICO</td><td>Senior Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>7</td><td>tabitha_lee@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DEO</td><td>Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>8</td><td>sherlynn_yeo_from.tp@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Intern</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>9</td><td>tylia_ng@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>CDCP</td><td>Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>10</td><td>nur_sabrina_mohamed_yusoff@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DEO</td><td>Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>11</td><td>desmond_ang@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>CDD-HR</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>12</td><td>kenneth_ho@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SPD-Finance</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>13</td><td>glenn_fang@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Senior Data Analyst</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>14</td><td>yue_wan_lin@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>15</td><td>brian_chin@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>16</td><td>valerie_yeo@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DEO</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>17</td><td>nathaniel_soon@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>18</td><td>eugene_teng@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>RDD</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>19</td><td>christine_yong@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>20</td><td>wee_hsiang_ti@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SPD-Finance</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>21</td><td>lan_huiting@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>22</td><td>ruzanna_abdul_razak@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>SNG-WDD</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>23</td><td>loh_khai_leong@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>DTO</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>24</td><td>jasmine_yang@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>DTO</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>25</td><td>zoey_loh@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>26</td><td>karenza_mosquera@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>27</td><td>tan_su-yin@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>CDD-HR</td><td>Senior Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>28</td><td>jacky_tan@mddi.gov.sg</td><td><span class="badge gitd">GITD Admin</span></td><td>GITD</td><td>Data Infrastructure Engr</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>29</td><td>nicholas_ling@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>30</td><td>lee_siling@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>ICO</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>31</td><td>dawn_wa@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>32</td><td>joline_tan@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>33</td><td>william_tan@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>GDD</td><td>Assistant Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>34</td><td>chew_yihao@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>35</td><td>jerome_kuah@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>36</td><td>shirley_ng@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-WDD</td><td>Assistant Director</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>37</td><td>arnold_ng@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>ISM</td><td>Delivery Lead</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>38</td><td>hui_pang@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DSD</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>39</td><td>kwok_chee_meng@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>ISM</td><td>IT Consultant</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>40</td><td>cheong_eng_tat@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>DSD</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>41</td><td>teo_xue_jun@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>SNG-GDD</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>42</td><td>jae_yang_lau_from.tp@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Temp Staff</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>43</td><td>kong_yan_ping@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>44</td><td>emma_chew@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>CDD-HR</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>45</td><td>chen_shiqi@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>46</td><td>belinda_wong@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DEO</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>47</td><td>heng_yiyu@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>48</td><td>mavis_chung@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SCD</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>49</td><td>kam_tai_tong@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>RDD</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>50</td><td>colin_chan@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>51</td><td>kee_sok_hoon@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>ICO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>52</td><td>shanice_teo@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>53</td><td>oon_zhi_xiang@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>REACH</td><td>Assistant Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>54</td><td>nur_syahidah_sahrom@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DEO</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>55</td><td>omela_ng@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>DSD</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>56</td><td>lo_zhi_zhan@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>SNG-GDD</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>57</td><td>tan_siong_chai@mddi.gov.sg</td><td><span class="badge gitd">GITD Admin</span></td><td>GITD</td><td>IT Consultant</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>58</td><td>lee_ying_ying@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>DEO</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>59</td><td>koh_puay_kee@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Assistant Director</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>60</td><td>david_low@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>LEGAL</td><td>Director</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>61</td><td>dennis_ngo@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>62</td><td>xu_jing_hui@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>ISM</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>63</td><td>hannah_chua@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Assistant Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>64</td><td>bertram_chan@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>CDD-HR</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>65</td><td>sarah_ong@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>ICO</td><td>Assistant Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>66</td><td>ng_lee_qin@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>REACH</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>67</td><td>lim_li_qian@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Assistant Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>68</td><td>janelle_liang@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DEO</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>69</td><td>tan_li_ting@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>MD-MED</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>70</td><td>cyril_ting@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>71</td><td>loh_li_hui@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>CDCP</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>72</td><td>ashley_see@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DEO</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>73</td><td>mabel_soh@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>PCD-TD</td><td>Assistant Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>74</td><td>joel_chua@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>SNG-Smart City</td><td>Director</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>75</td><td>zhuo_jingyi@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>RDD</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>76</td><td>eunice_yip@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>77</td><td>ng_bee_ling@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>CDD-HR</td><td>Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>78</td><td>rose_baey@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>ICO</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>79</td><td>rajendran_vishnupriya_from.tp@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DTO</td><td>Intern</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>80</td><td>goh_hwee_chen@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>81</td><td>mei_na_pang@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DSD</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>82</td><td>lu_caixia@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>PCD-TD</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>83</td><td>ashlyn_kua@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DSD</td><td>Assistant Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>84</td><td>yip_sze_kay@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>85</td><td>tan_li_lian@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>MD-MED</td><td>Senior Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>86</td><td>andy_ho@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>87</td><td>joanne_chan@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>PCD-TD</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>88</td><td>lau_yi_xian@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SPD-Finance</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>89</td><td>kuek_jieyin@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>90</td><td>hazel_ting@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>DSD</td><td>Senior Manager</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>91</td><td>harish_karthick@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>MD-MAOD</td><td>Assistant Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>92</td><td>christopher_ho@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>RDD</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>93</td><td>rachael_tay@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>PCD-CPD</td><td>Assistant Director</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>94</td><td>tan_si_ying@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Second Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>95</td><td>loh_jiahui@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>RDD</td><td>Acting Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>96</td><td>gokul_rajendran@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-Products</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>97</td><td>aaron_lye@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>PCD-CPD</td><td>Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>98</td><td>wong_li_ting@mddi.gov.sg</td><td><span class="badge do">Data Owner</span></td><td>CDD-HR</td><td>Deputy Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge ina">Inactive</span></td></tr>
+        <tr><td>99</td><td>jethro_tan@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>RDD</td><td>Senior Asst Director</td><td><span class="badge pilot">Pilot</span></td><td><span class="badge act">Active</span></td></tr>
+        <tr><td>100</td><td>low_hui_ee@mddi.gov.sg</td><td><span class="badge da">Data Analyst</span></td><td>SNG-GDD</td><td>Senior Manager</td><td><span class="badge mass">Mass</span></td><td><span class="badge act">Active</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /container -->
+<footer>DAP Dashboard &nbsp;|&nbsp; DAP Users as at 26 Jun 2026</footer>
+</div><!-- /tab-users -->
 
 <script>
 Chart.register(ChartDataLabels);
@@ -380,6 +575,120 @@ new Chart(document.getElementById('divRoleChart'), {
       x: { stacked: true, ticks: { stepSize: 1 }, title: { display: true, text: 'Requests' } },
       y: { stacked: true }
     },
+    maintainAspectRatio: false
+  }
+});
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById(this.dataset.tab).classList.add('active');
+  });
+});
+
+// === DAP Users Tab Charts ===
+const GRAY = '#718096';
+
+// U1. Role donut
+new Chart(document.getElementById('uRoleChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Data Analyst', 'Data Owner', 'GITD Admin'],
+    datasets: [{ data: [72, 26, 2], backgroundColor: [BLUE, GREEN, GRAY], borderWidth: 2 }]
+  },
+  options: {
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} (${ctx.raw}%)` } },
+      datalabels: {
+        anchor: 'center', align: 'center',
+        display: ctx => ctx.dataset.data[ctx.dataIndex] >= 5,
+        formatter: (val) => `${val}\n(${val}%)`,
+        color: 'white', font: { size: 12, weight: '700' }, textAlign: 'center'
+      }
+    },
+    cutout: '60%', layout: { padding: 10 }
+  }
+});
+
+// U2. Status donut
+new Chart(document.getElementById('uStatusChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Active', 'Inactive'],
+    datasets: [{ data: [87, 13], backgroundColor: [GREEN, '#fc8181'], borderWidth: 2 }]
+  },
+  options: {
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} (${ctx.raw}%)` } },
+      datalabels: {
+        anchor: 'center', align: 'center',
+        formatter: (val) => `${val}\n(${val}%)`,
+        color: 'white', font: { size: 12, weight: '700' }, textAlign: 'center'
+      }
+    },
+    cutout: '60%', layout: { padding: 10 }
+  }
+});
+
+// U3. Stage donut
+new Chart(document.getElementById('uStageChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Pilot', 'Mass'],
+    datasets: [{ data: [80, 20], backgroundColor: [PURPLE, ORANGE], borderWidth: 2 }]
+  },
+  options: {
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} (${ctx.raw}%)` } },
+      datalabels: {
+        anchor: 'center', align: 'center',
+        formatter: (val) => `${val}\n(${val}%)`,
+        color: 'white', font: { size: 12, weight: '700' }, textAlign: 'center'
+      }
+    },
+    cutout: '60%', layout: { padding: 10 }
+  }
+});
+
+// U4. Division horizontal bar
+new Chart(document.getElementById('uDivChart'), {
+  type: 'bar',
+  data: {
+    labels: ['DTO', 'RDD', 'SNG-GDD', 'DEO', 'DSD', 'CDD-HR', 'ICO', 'ISM', 'SNG-WDD', 'PCD-TD', 'SPD-Finance', 'CDCP', 'REACH', 'GITD', 'MD-MED', 'PCD-CPD', 'GDD', 'LEGAL', 'MD-MAOD', 'PCD-NMO', 'SCD', 'SNG-Products', 'SNG-Smart City'],
+    datasets: [{ label: 'Users', data: [20, 13, 11, 9, 6, 6, 5, 4, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1], backgroundColor: TEAL }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      datalabels: { anchor: 'end', align: 'right', formatter: val => val, color: '#2d3748', font: { size: 11, weight: '700' } }
+    },
+    scales: { x: { ticks: { stepSize: 1 }, title: { display: true, text: 'Users' } } },
+    layout: { padding: { right: 24 } },
+    maintainAspectRatio: false
+  }
+});
+
+// U5. Designation bar
+new Chart(document.getElementById('uDesigChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Senior Manager', 'Asst Director', 'Director', 'Deputy Director', 'Sr Asst Director', 'Manager', 'Asst Manager', 'Senior Director', 'Other'],
+    datasets: [{ label: 'Users', data: [25, 18, 10, 10, 8, 8, 7, 3, 11], backgroundColor: PURPLE }]
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+      datalabels: { anchor: 'end', align: 'top', formatter: val => val, color: '#2d3748', font: { size: 12, weight: '700' } }
+    },
+    scales: { y: { ticks: { stepSize: 1 }, title: { display: true, text: 'Users' } } },
+    layout: { padding: { top: 20 } },
     maintainAspectRatio: false
   }
 });
